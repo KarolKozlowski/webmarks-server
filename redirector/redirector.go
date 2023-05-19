@@ -61,7 +61,7 @@ func RootHandler(w http.ResponseWriter, r *http.Request) {
 		shortcuts["dotnot"] = Shortcut{Target: "https://dotnot.pl"}
 		shortcuts["wp"] = Shortcut{Target: "https://wp.pl"}
 
-		log.Warn().Msg("Received request: " + r.Host + path)
+		log.Warn().Msg("Received request: " + r.Host + "/" + path)
 
 		shortcut, ok := shortcuts[path]
 		if ok {
