@@ -1,0 +1,19 @@
+html, body {
+    background: #222222;
+    color: #00A4E4;
+    height: 100%;
+}
+
+body {
+    margin: 0;
+    font-family: 'Rubik';font-size: 22px;
+}
+
+.flex-container {
+    height: 100%;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
