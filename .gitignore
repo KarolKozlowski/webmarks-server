@@ -334,3 +334,6 @@ ASALocalRun/
 out
 pkg
 debug
+
+# ignore golang debugger bin
+__debug_bin
