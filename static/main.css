@@ -5,8 +5,13 @@ html, body {
 }
 
 body {
+    font-family: 'Verdana';
     margin: 0;
-    font-family: 'Rubik';font-size: 22px;
+    font-size: 22px;
+}
+
+h1, h2, h3 {
+    font-family: 'Rubik';
 }
 
 .flex-container {
@@ -16,4 +21,9 @@ body {
     display: flex;
     align-items: center;
     justify-content: center;
+    flex-direction: column;
+}
+
+.flex-container#error {
+    color: #E42200;
 }

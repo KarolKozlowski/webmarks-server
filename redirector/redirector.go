@@ -11,14 +11,15 @@ import (
 )
 
 const (
-	Main    string = "main.tmpl"
-	Landing string = "main.tmpl"
+	Landing string = "landing.tmpl"
+	Error   string = "error.tmpl"
 )
 
 var templates *template.Template
 
 type PageData struct {
-	Title string
+	Header  string
+	Message string
 }
 
 type Shortcut struct {
@@ -71,14 +72,16 @@ func RootHandler(w http.ResponseWriter, r *http.Request) {
 			log.Warn().Msg("Redirect `" + path + "` not found")
 
 			data := PageData{
-				Title: "Redirect: " + path + " not found!",
+				Header:  "ERROR!",
+				Message: "Redirect: " + path + " not found!",
 			}
-			renderPage(w, Main, data)
+			renderPage(w, Error, data)
 
 		}
 	} else {
 		data := PageData{
-			Title: "Welcome!",
+			Header:  "Welcome!",
+			Message: "WebMarks server <i>alpha</i>.",
 		}
 		renderPage(w, Landing, data)
 	}
