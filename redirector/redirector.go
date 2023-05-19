@@ -61,14 +61,14 @@ func RootHandler(w http.ResponseWriter, r *http.Request) {
 		shortcuts["dotnot"] = Shortcut{Target: "https://dotnot.pl"}
 		shortcuts["wp"] = Shortcut{Target: "https://wp.pl"}
 
-		log.Warn().Msg("Received request: " + r.Host + "/" + path)
+		log.Debug().Msg("Received request: " + r.Host + "/" + path)
 
 		shortcut, ok := shortcuts[path]
 		if ok {
-			log.Info().Msg("Redirecting " + path + " -> " + shortcut.Target)
+			log.Debug().Msg("Redirecting " + path + " -> " + shortcut.Target)
 			http.Redirect(w, r, shortcut.Target, http.StatusSeeOther)
 		} else {
-			log.Warn().Msg("Redirect not found")
+			log.Warn().Msg("Redirect `" + path + "` not found")
 
 			data := PageData{
 				Title: "Redirect: " + path + " not found!",
