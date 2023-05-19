@@ -20,6 +20,15 @@ type Shortcut struct {
 	Target string
 }
 
+func renderPage(w http.ResponseWriter, t string, data any) {
+	header := templates.Lookup("header.tmpl")
+	header.Execute(w, data)
+	body := templates.Lookup(t)
+	body.Execute(w, data)
+	footer := templates.Lookup("footer.tmpl")
+	footer.Execute(w, data)
+}
+
 func RootHandler(w http.ResponseWriter, r *http.Request) {
 	var path = strings.Replace(r.URL.Path, "/", "", 1)
 	var allFiles []string
@@ -59,17 +68,14 @@ func RootHandler(w http.ResponseWriter, r *http.Request) {
 			data := PageData{
 				Title: "Redirect: " + path + " not found!",
 			}
+			renderPage(w, "main.tmpl", data)
 
-			s1 := templates.Lookup("main.tmpl")
-			s1.Execute(w, data)
 		}
 	} else {
 		data := PageData{
 			Title: "Welcome!",
 		}
-
-		s1 := templates.Lookup("main.tmpl")
-		s1.Execute(w, data)
+		renderPage(w, "main.tmpl", data)
 	}
 
 }
