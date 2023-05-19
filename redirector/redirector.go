@@ -10,6 +10,11 @@ import (
 	"github.com/rs/zerolog/log"
 )
 
+const (
+	Main    string = "main.tmpl"
+	Landing string = "main.tmpl"
+)
+
 var templates *template.Template
 
 type PageData struct {
@@ -68,14 +73,14 @@ func RootHandler(w http.ResponseWriter, r *http.Request) {
 			data := PageData{
 				Title: "Redirect: " + path + " not found!",
 			}
-			renderPage(w, "main.tmpl", data)
+			renderPage(w, Main, data)
 
 		}
 	} else {
 		data := PageData{
 			Title: "Welcome!",
 		}
-		renderPage(w, "main.tmpl", data)
+		renderPage(w, Landing, data)
 	}
 
 }
